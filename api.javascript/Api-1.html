@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FETCH JS</title>
+</head>
+
+<body>
+    <form action="">
+        <label for="cep">CEP</label>
+        <input type="number" id="cep">
+        
+        <br>
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco">
+        
+        <br>
+        <label for="bairro">Bairro</label>
+        <input type="text" id="bairro">
+        
+        <br>
+        <label for="cidade">Cidade</label>
+        <input type="text" id="cidade">
+        
+        <br>
+        <label for="estado">Estado</label>
+        <input type="text" id="estado">
+
+        <br><br>
+        <button onclick="bucarEndereco()">Buscar Endereço</button>
+    </form>
+    <script>
+
+        function bucarEndereco() {
+            event.preventDefault();
+
+            //https://viacep.com.br/ws/08391712/json/
+            let cep = document.getElementById('cep').value;
+            
+            const url = `https://viacep.com.br/ws/${cep}/json/`;
+            let cadastros;//undefined
+            fetch(url)
+                .then(function (resposta) {
+                    return resposta.json()//JSON.parse()
+                }).then(function (dados) {
+                    console.log(dados);
+
+                    //preencher os dados
+                    document.getElementById('endereco').value = cadastros.logradouro;
+
+                }).catch(function(erro){
+                    console.log("Erro!!!!!");
+                })
+
+            console.log("Eduardo Costa!!");   
+            
+            
+            
+        }//fim da função
+
+
+    </scrip>
+
+    </body>
+
+</html>
